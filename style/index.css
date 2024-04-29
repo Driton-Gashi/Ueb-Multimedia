@@ -422,6 +422,84 @@ header {
   display: none;
 }
 
+/* Inbox Section */
+
+.inbox-wrapper {
+  position: fixed;
+  width: 50%;
+  height: 100vh;
+  background-color: #222;
+  top: 0;
+  z-index: 999;
+  left: -100%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: #fff;
+  font-family: myFont;
+  transition: 0.4s ease all;
+  overflow: auto;
+  padding-bottom: 2em;
+}
+.inbox-wrapper.active {
+  left: 0;
+}
+
+.inbox-message:last-child {
+  padding-bottom: 2em;
+}
+.inbox-message {
+  padding: 1em;
+  border-bottom: 1px solid #555;
+  position: relative;
+  left: 0;
+  background-color: #333;
+  height: 115px;
+  transition: 0.4s ease all;
+}
+.inbox-message.deleted {
+  left: -100%;
+}
+.inbox-message-content {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.delete-message {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgb(125, 0, 0);
+  padding: 0.5em;
+  cursor: pointer;
+  transition: 0.2s ease all;
+}
+.delete-message:hover {
+  background-color: rgb(150, 0, 0);
+}
+.inbox-message-author-details a {
+  color: green;
+}
+.inbox-wrapper .close-inbox {
+  border-radius: 0;
+  color: #fff;
+  display: inline-block;
+  padding: 0.9em 1em 0.7em 1em;
+  background: rgb(128, 0, 0);
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  transition: 0.2s ease background;
+}
+.inboxWarning {
+  font-size: 1.5em;
+  padding: 1em;
+  color: rgb(150, 0, 0);
+}
+.inbox-header {
+  border-bottom: 1px;
+  padding: 1em;
+  text-align: center;
+}
+/* Inbox Section End */
 
 @media (max-width: 1024px) {
   .header .menu > li {

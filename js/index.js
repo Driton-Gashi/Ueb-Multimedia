@@ -62,3 +62,27 @@ document.body.addEventListener("click", (e) => {
     profileMenu.classList.add("hide");
   }
 });
+
+// Inbox Section
+
+const inboxWrapper = document.querySelector(".inbox-wrapper");
+const showInbox = () => {
+  inboxWrapper.classList.add("active");
+};
+const hideInbox = () => {
+  inboxWrapper.classList.remove("active");
+};
+
+
+const deleteMessageBtn = document.querySelectorAll(".delete-message");
+
+deleteMessageBtn.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.target.closest(".inbox-message").classList.add("deleted");
+
+    setTimeout(() => {
+      e.target.closest(".inbox-message").classList.add("hide");
+    }, 500);
+  });
+});
+// Inbox Section end

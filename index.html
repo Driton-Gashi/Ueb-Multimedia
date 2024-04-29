@@ -22,6 +22,36 @@
         <source src="./assets/audio/Song.mp3" type="audio/mp3">
     </audio>
     <div class="background">
+        <!-- Inbox Section -->
+        <div class="inbox-wrapper">
+            <div onclick="hideInbox()" class="close-inbox closeRegisterBtn"><i class="bi bi-x-lg"></i></div>
+            <div class="inbox-header">
+                <h1 class="inbox-title">Inbox</h1>
+            </div>
+            <div class="inbox-body">
+                <h1 class="hide inboxWarning">No messages to show</h1>
+                    <div class="inbox-message"> 
+                        <div class="delete-message"><i class="bi bi-trash3-fill"></i>
+                        </div>
+                        <h3 class="inbox-message-title">Message ID: <?= $message['id'] ?></h3>
+                        <p class="inbox-message-content"><?= $message['message'] ?></p>
+                        <p class="inbox-message-author-details">By: <?= $message['author'] ?> | <a href="#"><?= $message['authorEmail'] ?></a> |
+                            date: <?= $message['date'] ?>
+    
+                        </p>
+    
+                    </div>
+                <script>
+                    const numberOfMessages = document.querySelectorAll(".inbox-message").length;
+                    const inboxMsg = document.querySelector(".inboxWarning");
+    
+                    if (numberOfMessages == 0) {
+                        inboxMsg.classList.remove("hide");
+                    }
+                </script>
+            </div>
+        </div>
+        <!-- Inbox Section End -->
     <header>
         <div class="logo">
             <a href="../index.php">
@@ -70,9 +100,7 @@
                             <option value="invisible">Invisible</option>
                         </select>
                     </li>
-                        <li onclick="(()=>{
-                    window.location = './Dashboard.php'
-                  })()">
+                        <li>
                             <i class="bi bi-pencil-square"></i> Admin Dashboard
                         </li>
                         <li onclick="showInbox()"><i class="bi bi-inbox-fill"></i> Inbox</li>
