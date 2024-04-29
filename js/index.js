@@ -86,3 +86,106 @@ deleteMessageBtn.forEach((btn) => {
   });
 });
 // Inbox Section end
+
+// Slider animation
+
+// Slider
+const slider = document.querySelector(".moving");
+
+const forward = () => {
+  if (slider.classList.contains("forward-1")) {
+    slider.classList.remove("forward-1");
+    slider.classList.add("forward-2");
+  } else if (slider.classList.contains("forward-2")) {
+    slider.classList.remove("forward-2");
+  } else if (slider.classList.length == 1) {
+    slider.classList.add("forward-1");
+  } else if (slider.classList.contains("backward-2")) {
+    slider.classList.remove("backward-2");
+    slider.classList.add("backward-1");
+  } else if (slider.classList.contains("backward-1")) {
+    slider.classList.remove("backward-1");
+  }
+  clearInterval(automaticSliderInterval);
+  automaticSliderInterval = setInterval(automaticSlider, 5000);
+};
+
+const back = () => {
+  if (slider.classList.contains("forward-1")) {
+    slider.classList.remove("forward-1");
+  } else if (slider.classList.contains("forward-2")) {
+    slider.classList.remove("forward-2");
+    slider.classList.add("forward-1");
+  } else if (slider.classList.length == 1) {
+    slider.classList.add("backward-1");
+  } else if (slider.classList.contains("backward-1")) {
+    slider.classList.remove("backward-1");
+    slider.classList.add("backward-2");
+  } else {
+    slider.classList.remove("backward-2");
+  }
+  clearInterval(automaticSliderInterval);
+  automaticSliderInterval = setInterval(automaticSlider, 5000);
+};
+
+const automaticSlider = () => {
+  if (slider.classList.contains("forward-2")) {
+    slider.classList.remove("forward-2");
+    slider.classList.add("forward-1");
+  } else if (slider.classList.contains("forward-1")) {
+    slider.classList.remove("forward-1");
+  } else if (slider.classList.length == 1) {
+    slider.classList.add("backward-1");
+  } else if (slider.classList.contains("backward-1")) {
+    slider.classList.remove("backward-1");
+    slider.classList.add("backward-2");
+  } else {
+    slider.classList.remove("backward-2");
+    slider.classList.add("forward-2");
+  }
+};
+
+let automaticSliderInterval = setInterval(automaticSlider, 5000);
+
+// Slider animation end
+
+
+// Dropdown effect in the nav menu at "Guide" option
+const dropdownParent = document.querySelector(".dropdown-parent ");
+const dropdownMenu = document.querySelector(".dropdown");
+const dropdownIcon = document.querySelector(".dropdown-icon");
+
+dropdownParent.addEventListener("mouseover", () => {
+  dropdownMenu.classList.remove("hide");
+  dropdownIcon.classList.remove("bi-chevron-down");
+  dropdownIcon.classList.add("bi-chevron-up");
+});
+dropdownParent.addEventListener("mouseout", () => {
+  dropdownMenu.classList.add("hide");
+  dropdownIcon.classList.add("bi-chevron-down");
+  dropdownIcon.classList.remove("bi-chevron-up");
+});
+
+// Change profile Status to active, busy or invisible
+const profileStatus = document.querySelector(".status");
+const statusChange = () => {
+  if (profileStatus.value == "active") {
+    profileOption.style.setProperty("--selection-background", "green");
+  } else if (profileStatus.value == "busy") {
+    profileOption.style.setProperty("--selection-background", "red");
+  } else if (profileStatus.value == "invisible") {
+    profileOption.style.setProperty("--selection-background", "white");
+  } else {
+  }
+};
+
+const menu = document.querySelector(".menu");
+
+const showMenu = () => {
+  menu.classList.add("active");
+  document.body.classList.add("noScroll");
+};
+const hideMenu = () => {
+  menu.classList.remove("active");
+  document.body.classList.remove("noScroll");
+};
