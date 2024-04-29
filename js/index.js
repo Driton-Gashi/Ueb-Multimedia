@@ -145,7 +145,7 @@ const automaticSlider = () => {
   }
 };
 
-let automaticSliderInterval = setInterval(automaticSlider, 5000);
+let automaticSliderInterval = setInterval(automaticSlider, 4000);
 
 // Slider animation end
 
