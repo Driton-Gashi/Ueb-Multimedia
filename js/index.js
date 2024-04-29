@@ -60,13 +60,5 @@ document.body.addEventListener("click", (e) => {
     !e.target.parentNode.classList.contains("edit-profile-li")
   ) {
     profileMenu.classList.add("hide");
-    // nese user e mbyll profile menu gjat editimit me ju rujt t'dhanat
-    inputName.setAttribute("disabled", "");
-    if (inputName.value.length >= 6) {
-      EmriPerdoruesit = inputName.value;
-    } else {
-      inputName.value = EmriPerdoruesit;
-    }
-    inputName.classList.remove("border");
   }
 });

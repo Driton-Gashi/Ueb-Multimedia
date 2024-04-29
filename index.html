@@ -18,8 +18,8 @@
     })
     </script>
     <!--Shto autoplay tek audio per mu dhez muzika vet  -->
-    <audio loop class="minecraft-audio">
-        <source src="../assets/audio/Minecraft-Theme-Song-3minute.mp3" type="audio/mp3">
+    <audio autoplay loop class="minecraft-audio">
+        <source src="./assets/audio/Song.mp3" type="audio/mp3">
     </audio>
     <div class="background">
     <header>
@@ -59,11 +59,8 @@
             <i class="bi bi-volume-up-fill unMute "></i>
             <i class="bi bi-volume-mute-fill mute hide"></i>
             <div class="profile ">
-                <img src="../php/uploads/profiles/<?= $_SESSION['image'] ?>" alt="">
+                <img src="./assets/images/profile-image(default).png" alt="">
                 <ul class="profile-menu hide">
-                    <li onclick="changeName()" class="edit-profile-li"><i class="bi bi-person-circle"></i>
-                        <div class="edit-profile-text-wrapper"> Edit Username &ThinSpace; </div><input title="Press Enter to save changes" disabled class="name" type="text" >
-                    </li>
                     <li class="status-wrapper"><i class="bi bi-chat-dots"></i>
                         <select title="Change your status" onchange="statusChange()" class="status" name="" id="">
     
