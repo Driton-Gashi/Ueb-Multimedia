@@ -1,7 +1,7 @@
 .background {
     height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
-      url(../assets//images//HomepageBanner.jpg);
+      url(../assets//images/background/HomepageBanner.jpg);
     /* background-image: url(../assets/img/icons/slideshow/171170.jpg); */
     background-size: cover !important;
     background-position: center !important;
@@ -125,4 +125,117 @@
   .slide-box:hover img {
     filter: contrast(120%) brightness(30%);
   }
+  
   /* Slideshow end */
+
+  /* About Us */
+  
+/* about Section */
+.about {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)),
+    url(../assets/images/background/image-2.jpg);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+  color: #fff;
+}
+.about .about-minecraft {
+  width: 800px;
+  font-family: primaryFont;
+  padding-top: 5em;
+}
+.about .about-minecraft h1 {
+  padding: 0.5em 0;
+}
+.video {
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  border: 1px solid white;
+  border: 10px solid rgba(0, 0, 0, 0.1);
+}
+
+.about .about-minecraft .btn {
+  display: inline-block;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  width: 200px;
+  background-color: #fff;
+  color: #000;
+  padding: 0.5em 1.5em;
+  margin: 1em 0;
+  border-radius: 3px;
+  font-family: primaryFont;
+  cursor: pointer;
+  transition: 0.4s ease all;
+}
+
+.about-minecraft-mouseover {
+  color: lightgreen !important;
+  border-color: lightgreen !important;
+}
+.about .about-minecraft .btn img {
+  margin: 0 10px;
+  position: relative;
+  transition: 0.4s ease all !important;
+  right: 0;
+}
+.about .about-minecraft .btn:hover {
+  background: transparent;
+  color: #fff;
+}
+.about .about-minecraft .btn:hover img {
+  right: -45px;
+}
+.video iframe {
+  border: 10px solid rgba(255, 255, 255, 0.2);
+}
+/* About Us End */
+
+/* Media queries */
+@media(max-width:1024px){
+  .background .hero .slideshow {
+    height: 270px;
+  }
+  .about .about-minecraft {
+    width: 700px;
+  }
+  .video iframe {
+    width: 700px;
+  }
+}
+@media(max-width:768px){
+  .background .hero .slideshow {
+    height: 250px;
+  }
+  .about .about-minecraft {
+    width: 500px;
+    text-align: justify;
+  }
+  .video iframe {
+    width: 500px;
+    height: 350px;
+  }
+}
+@media(max-width:560px){
+  .about .about-minecraft {
+    width: 100%;
+    padding: 0 1em;
+  }
+  .video iframe {
+    width: 400px;
+    height: 300px;
+  }
+}
+@media(max-width:425px){
+  .video iframe {
+    width: 350px;
+    height: 250px;
+  }
+}
