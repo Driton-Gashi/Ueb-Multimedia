@@ -1,0 +1,11 @@
+.background {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
+      url(../assets//images/background/HomepageBanner.jpg);
+    /* background-image: url(../assets/img/icons/slideshow/171170.jpg); */
+    background-size: cover !important;
+    background-position: center !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

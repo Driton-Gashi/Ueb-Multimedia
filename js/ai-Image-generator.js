@@ -28,9 +28,10 @@
 
     // Display the generated image
     document.getElementById('resultContainer').innerHTML = `
-    <a href="${imageUrl}" target="_blank" download="Foto_Gjeneruar_me_AI.jpg" class="download" >
+                <a href="${imageUrl}" target="_blank" download="Foto_Gjeneruar_me_AI.jpg" class="download" >
                     <i class="bi bi-download" title="Kliko per te shkarkuar foton"></i>
                 </a>
+                
                 <a href="${imageUrl}" target="_blank" class="viewMore">
                     <i class="bi bi-eye-fill " title="Kliko per te pare imazhin e plote"></i>
                 </a>

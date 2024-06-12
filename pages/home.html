@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="../style/index.css">
     <link rel="stylesheet" href="../style/home.css">
     <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
+    <!-- Pixi JS -->
+<script src="https://pixijs.download/release/pixi.js"></script>
+<style>
+    canvas{
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+</style>
 </head>
 <body class="noScroll">
     <div class="loader-wrapper">
@@ -20,7 +30,7 @@
     })
     </script>
     <!--Shto autoplay tek audio per mu dhez muzika vet  -->
-    <audio autoplay loop class="minecraft-audio">
+    <audio  loop class="minecraft-audio">
         <source src="../assets/audio/Song.mp3" type="audio/mp3">
     </audio>
     <div class="background">
@@ -67,7 +77,7 @@
                 <li><a href="./home.html#about">About</a></li>
                 <li><a href="./home.html#contact">Contact</a></li>
                 <li><a href="./home.html#our-ai">Our AI</a></li>
-                <li class="dropdown-parent"><a>Guide <i class="bi bi-chevron-down dropdown-icon"></i></a>
+                <li class="dropdown-parent"><a href="./pixi-test.html">Pixi JS <i class="bi bi-chevron-down dropdown-icon"></i></a>
                     <ul class="dropdown hide">
                         <li>Mobs</li>
                         <li>Blocks</li>
@@ -75,7 +85,6 @@
                         <li>Tools</li>
                     </ul>
                 </li>
-    
             </ul>
         </nav>
         <div class="header-icons">
@@ -130,7 +139,17 @@
                 </div>
 
                 <div class="slide-box">
-                    <img src="../assets/images/slider_images/Designer (7).jpeg" alt="">
+                    <img src="../assets/images/slider_images/Designer (4).jpeg" alt="">
+                    <h1 class="slide-box-text">AI Generated Image 5</h1>
+                </div>
+
+                <div class="slide-box">
+                    <img src="../assets/images/slider_images/Designer (5).jpeg" alt="">
+                    <h1 class="slide-box-text">AI Generated Image 5</h1>
+                </div>
+
+                <div class="slide-box">
+                    <img src="../assets/images/slider_images/Designer (6).jpeg" alt="">
                     <h1 class="slide-box-text">AI Generated Image 5</h1>
                 </div>
 
@@ -142,6 +161,7 @@
         
                 <button onclick="back()" class="slider-btn"><i class="bi bi-forward-fill"></i></button>
             </div>
+
         </div>
     </div>
     </div>
@@ -219,8 +239,126 @@
         </div>
     
     </section>
+    
 </body>
 <script src="../js/index.js"></script>
+<script>function Trails() {
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    document.body.appendChild(canvas);
+  
+    canvas.style.position = 'absolute';
+    canvas.style.width = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.display = 'block';
+  
+    var self = this;
+    
+    this.circleRadius = 30;
+    this.trailX = 300;
+    this.trailY = 300;
+    this.sourceX = 0;
+    this.sourceY = 0;
+    this.trailSpeed = 3;
+    this.trailAlpha = 3;
+    this.colorType = 'random';
+  
+    function returnColor() {
+      var arr = '0123456789abcdef';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += arr[Math.floor(Math.random() * arr.length)];
+      }
+      return color;
+    }
+  
+    function createRect(e) {
+      var color;
+      if (self.colorType == 'blue') {
+        var arr = ['#123456', '#345678', '#567890', '#7890ab', '#90abcd'];
+        color = arr[Math.floor(Math.random() * arr.length)];
+      } else if (self.colorType == 'melon') {
+        var arr = ['#ffcccc', '#ff9999', '#cc3333', '#cc6666', '#993333', '#663333'];
+        color = arr[Math.floor(Math.random() * arr.length)];
+      } else {
+        color = returnColor();
+      }
+      var scale = Math.random();
+      var dx = e.pageX + (getRandomInt(self.trailX) - (self.trailX * 0.5));
+      var dy = e.pageY + (getRandomInt(self.trailY) - (self.trailY * 0.5));
+      var ox = e.pageX + (getRandomInt(self.sourceX) - (self.sourceX * 0.5));
+      var oy = e.pageY + (getRandomInt(self.sourceY) - (self.sourceY * 0.5));
+  
+      var circle = {
+        x: ox,
+        y: oy,
+        radius: self.circleRadius,
+        scale: 0.5,
+        alpha: 0,
+        color: color,
+        targetX: dx,
+        targetY: dy,
+        targetScale: scale,
+        targetAlpha: Math.random() * 0.25 + 0.5,
+        life: 0
+      };
+  
+      animateCircle(circle);
+    }
+  
+    function animateCircle(circle) {
+      function step() {
+        var progress = circle.life / (self.trailSpeed * 60);
+        if (progress > 1) {
+          return;
+        }
+        circle.life++;
+        circle.x += (circle.targetX - circle.x) * 0.1;
+        circle.y += (circle.targetY - circle.y) * 0.1;
+        circle.scale += (circle.targetScale - circle.scale) * 0.1;
+        circle.alpha += (circle.targetAlpha - circle.alpha) * 0.1;
+        drawCircle(circle);
+        requestAnimationFrame(step);
+      }
+      step();
+    }
+  
+    function drawCircle(circle) {
+      context.globalAlpha = circle.alpha;
+      context.fillStyle = circle.color;
+      context.beginPath();
+      context.arc(circle.x, circle.y, circle.radius * circle.scale, 0, Math.PI * 2);
+      context.fill();
+    }
+  
+    function getRandomInt(n) {
+      return Math.floor(Math.random() * n) + 1;
+    }
+  
+    function animate() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      requestAnimationFrame(animate);
+    }
+  
+    document.addEventListener('mousemove', createRect);
+    animate();
+  }
+  
+  var trails = new Trails();
+  var gui = new dat.GUI();
+  
+  gui.add(trails, 'circleRadius', 5, 150);
+  gui.add(trails, 'sourceX', 0, 500);
+  gui.add(trails, 'sourceY', 0, 500);
+  gui.add(trails, 'trailX', 0, 500);
+  gui.add(trails, 'trailY', 0, 500);
+  gui.add(trails, 'trailSpeed', 0.25, 8).step(0.25);
+  gui.add(trails, 'trailAlpha', 0.25, 8).step(0.25);
+  gui.add(trails, 'colorType', ['random', 'melon', 'blue']);
+  
+</script>
 
 <!-- Mos e fshi qet koment
 <script src="../js/ai-Image-generator.js"></script>

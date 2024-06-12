@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/pixi-js.css">
+    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- Pixi JS -->
+    <script src="https://pixijs.download/release/pixi.js"></script>
+</head>
+<body class="noScroll">
+    <div class="loader-wrapper">
+        <img src="../assets//images/Minecraft-block.png" alt="" class="loader">
+        <img src="../assets/images/logo.png" width="300px" alt="">
+    </div>
+    <script>
+    window.addEventListener("load", () => {
+        document.querySelector(".loader-wrapper").classList.add("hide");
+        document.body.classList.remove("noScroll");
+    })
+    </script>
+    <!--Shto autoplay tek audio per mu dhez muzika vet  -->
+    <audio  loop class="minecraft-audio">
+        <source src="../assets/audio/Song.mp3" type="audio/mp3">
+    </audio>
+    <div class="background">
+        <!-- Inbox Section -->
+        <div class="inbox-wrapper">
+            <div onclick="hideInbox()" class="close-inbox closeRegisterBtn"><i class="bi bi-x-lg"></i></div>
+            <div class="inbox-header">
+                <h1 class="inbox-title">Inbox</h1>
+            </div>
+            <div class="inbox-body">
+                <h1 class="hide inboxWarning">No messages to show</h1>
+                    <div class="inbox-message"> 
+                        <div class="delete-message"><i class="bi bi-trash3-fill"></i>
+                        </div>
+                        <h3 class="inbox-message-title">Message ID: <?= $message['id'] ?></h3>
+                        <p class="inbox-message-content"><?= $message['message'] ?></p>
+                        <p class="inbox-message-author-details">By: <?= $message['author'] ?> | <a href="#"><?= $message['authorEmail'] ?></a> |
+                            date: <?= $message['date'] ?>
+    
+                        </p>
+    
+                    </div>
+                <script>
+                    const numberOfMessages = document.querySelectorAll(".inbox-message").length;
+                    const inboxMsg = document.querySelector(".inboxWarning");
+    
+                    if (numberOfMessages == 0) {
+                        inboxMsg.classList.remove("hide");
+                    }
+                </script>
+            </div>
+        </div>
+        <!-- Inbox Section End -->
+    <header>
+        <div class="logo">
+            <a href=".../index.php">
+                <img width="130px" src="../assets/images/logo.png" alt="" />
+            </a>
+        </div>
+        <nav>
+            <ul class="menu">
+                <i onclick="hideMenu()" class="bi bi-x-square close"></i>
+                <li><a href="./home.html">Home</a></li>
+                <li><a href="./home.html#about">About</a></li>
+                <li><a href="./home.html#contact">Contact</a></li>
+                <li><a href="./home.html#our-ai">Our AI</a></li>
+                <li class="dropdown-parent"><a href="./pixi-test.html">Pixi JS <i class="bi bi-chevron-down dropdown-icon"></i></a>
+                    <ul class="dropdown hide">
+                        <li>Mobs</li>
+                        <li>Blocks</li>
+                        <li>Foods</li>
+                        <li>Tools</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <i onclick="showMenu()" class="bi bi-list burger"></i>
+            <i class="bi bi-volume-up-fill unMute "></i>
+            <i class="bi bi-volume-mute-fill mute hide"></i>
+            <div class="profile ">
+                <img src="../assets/images/profile-image(default).png" alt="">
+                <ul class="profile-menu hide">
+                    <li class="status-wrapper"><i class="bi bi-chat-dots"></i>
+                        <select title="Change your status" onchange="statusChange()" class="status" name="" id="">
+    
+    
+                            <option value="active">Active <span class="dot green"></span></option>
+                            <option value="busy">Busy </option>
+                            <option value="invisible">Invisible</option>
+                        </select>
+                    </li>
+                        <li>
+                            <i class="bi bi-pencil-square"></i> Admin Dashboard
+                        </li>
+                        <li onclick="showInbox()"><i class="bi bi-inbox-fill"></i> Inbox</li>
+                        <li>
+                            <i class="bi bi-gear-fill"></i> Settings
+                        </li>
+                    <li onclick="logOut()"><i class="bi bi-box-arrow-left"></i> Log Out</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <script type="module">
+    import { Application, Assets } from 'pixi.js';
+        import { addBackground } from './addBackground.js';
+        import { addFishes, animateFishes } from './addFishes.js';
+        import { addWaterOverlay, animateWaterOverlay } from './addWaterOverlay.js';
+        import { addDisplacementEffect } from './addDisplacementEffect.js';
+        
+        // Create a PixiJS application.
+        const app = new Application();
+        
+        // Store an array of fish sprites for animation.
+        const fishes = [];
+        
+        async function setup()
+        {
+            // Intialize the application.
+            await app.init({ background: '#1099bb', resizeTo: window });
+        
+            // Then adding the application's canvas to the DOM body.
+            document.querySelector(".background").appendChild(app.canvas);
+        }
+        
+        async function preload()
+        {
+            // Create an array of asset data to load.
+            const assets = [
+                { alias: 'background', src: 'https://pixijs.com/assets/tutorials/fish-pond/pond_background.jpg' },
+                { alias: 'fish1', src: 'https://pixijs.com/assets/tutorials/fish-pond/fish1.png' },
+                { alias: 'fish2', src: 'https://pixijs.com/assets/tutorials/fish-pond/fish2.png' },
+                { alias: 'fish3', src: 'https://pixijs.com/assets/tutorials/fish-pond/fish3.png' },
+                { alias: 'fish4', src: 'https://pixijs.com/assets/tutorials/fish-pond/fish4.png' },
+                { alias: 'fish5', src: 'https://pixijs.com/assets/tutorials/fish-pond/fish5.png' },
+                { alias: 'overlay', src: 'https://pixijs.com/assets/tutorials/fish-pond/wave_overlay.png' },
+                { alias: 'displacement', src: 'https://pixijs.com/assets/tutorials/fish-pond/displacement_map.png' },
+            ];
+        
+            // Load the assets defined above.
+            await Assets.load(assets);
+        }
+        
+        // Asynchronous IIFE
+        (async () =>
+        {
+            await setup();
+            await preload();
+        
+            addBackground(app);
+            addFishes(app, fishes);
+            addWaterOverlay(app);
+            addDisplacementEffect(app);
+        
+            // Add the animation callbacks to the application's ticker.
+            app.ticker.add((time) =>
+            {
+                animateFishes(app, fishes, time);
+                animateWaterOverlay(app, time);
+            });
+        })();
+        
+      </script>
+    </div>
+</body>
+</html>
